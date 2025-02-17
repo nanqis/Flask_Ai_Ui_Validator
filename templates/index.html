@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f8f8;
+            display: inline-block;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function extractFigmaDetails(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            let figmaUrlInput = document.getElementById("figma_url").value.trim();
+            let webUrlInput = document.getElementById("web_url").value.trim();
+            let fileKeyInput = document.getElementById("figma_file_key");
+            let nodeIdInput = document.getElementById("figma_node_id");
+
+            // Ensure the Figma URL follows correct format
+            if (!figmaUrlInput.startsWith("https://www.figma.com/file/") &&
+                !figmaUrlInput.startsWith("https://www.figma.com/proto/") &&
+                !figmaUrlInput.startsWith("https://www.figma.com/design/")) {
+                alert("Invalid Figma URL. Please enter a valid Figma file, prototype, or design link.");
+                return;
+            }
+
+            // Extract File Key (supports "file", "proto", and "design")
+            let fileKeyMatch = figmaUrlInput.match(/(file|proto|design)\/([a-zA-Z0-9]+)\//);
+            let nodeIdMatch = figmaUrlInput.match(/node-id=(\d+)-(\d+)/);
+
+            if (fileKeyMatch) {
+                fileKeyInput.value = fileKeyMatch[2]; // Extracted File Key
+            } else {
+                alert("Could not extract the Figma File Key. Please check the URL.");
+                return;
+            }
+
+            if (nodeIdMatch) {
+                let nodeId = `${nodeIdMatch[1]}:${nodeIdMatch[2]}`; // Convert "-" to ":"
+                nodeIdInput.value = nodeId;
+            } else {
+                nodeIdInput.value = ""; // Keep empty if not found
+            }
+
+            // Validate Web URL format
+            if (!webUrlInput.startsWith("http://") && !webUrlInput.startsWith("https://") && !webUrlInput.startsWith("file:///")) {
+                alert("Invalid Web URL. Please enter a valid web page path or local file URL.");
+                return;
+            }
+
+            document.getElementById("validationForm").submit(); // Submit the form after processing
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter Figma URL and Web URL</h2>
+    <form id="validationForm" action="/" method="post" onsubmit="extractFigmaDetails(event)">
+        <div style="display: flex; flex-direction: column; gap: 10px; width: 300px;">
+            <label for="figma_url">Figma URL:</label>
+            <input type="text" id="figma_url" name="figma_url" required placeholder="https://www.figma.com/file/... or https://www.figma.com/proto/... or https://www.figma.com/design/...">
+            
+            <label for="web_url">Web Page URL:</label>
+            <input type="text" id="web_url" name="web_url" required placeholder="https://example.com or file:///path/to/file.html">
+
+            <!-- Hidden inputs to automatically pass extracted values -->
+            <input type="hidden" id="figma_file_key" name="figma_file_key">
+            <input type="hidden" id="figma_node_id" name="figma_node_id">
+        </div>
+        <br>
+        <button type="submit">Compare</button>
+    </form>
+</body>
+</html>

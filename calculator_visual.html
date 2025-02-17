@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novice Hunters - Calculator</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            background-color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #e3e3e3; /* Slightly lighter gray */
+            padding: 15px 40px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3b48f4;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            margin-left: 5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: #d5e3ff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: #003d82;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            padding: 50px 20px;
+            margin-top: 40px;
+        }
+
+        .logo-big {
+            font-size: 60px;
+            color: #3b48f4;
+            font-weight: bold;
+        }
+
+        .calculator-box {
+            background: #d5e3ff; /* Lighter blue */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            width: 320px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-box label {
+            display: block;
+            font-size: 14px;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .calculator-box input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background: #d9d9d9;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #0056d6; /* Slightly lighter blue */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="logo-icon">N</span> <span class="logo-text">NOVICE HUNTERS</span>
+        </div>
+        <nav>
+            <button class="nav-btn">Main</button>
+            <button class="nav-btn">Calculator</button>
+            <button class="nav-btn">Login</button>
+        </nav>
+    </header>
+
+    <main class="calculator-section">
+        <h1 class="logo-big">N</h1>
+        <h2>CALCULATOR</h2>
+
+        <div class="calculator-box">
+            <label>Gross tax payable</label>
+            <input type="text">
+            
+            <label>Deductions</label>
+            <input type="text">
+            
+            <label>Zakat</label>
+            <input type="text">
+            
+            <button class="submit-btn">Enter</button>
+        </div>
+    </main>
+
+</body>
+</html>
